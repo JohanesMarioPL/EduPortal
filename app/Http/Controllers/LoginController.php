@@ -46,7 +46,7 @@ class LoginController extends Controller
 
     public function indexProdi()
     {
-        return Response()->view('prodi.index');
+        return Response()->view('program-studi.index');
     }
 
     public function indexUser()
@@ -69,7 +69,7 @@ class LoginController extends Controller
             } else if (Auth::user()['role_id'] === 2) {
                 return redirect('/fakultas');
             } else if (Auth::user()['role_id'] === 3) {
-                return redirect('/prodi');
+                return redirect('/program-studi');
             }
             return redirect('/user');
         } else {

@@ -33,7 +33,7 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <h1 class="font-bold text-lg text-black">EduPortal</h1>
+                    <a href="{{route('admin.users.index')}}" class="font-bold text-lg text-black">EduPortal</a>
                 </div>
                 <!-- Desktop Menu (hidden on small screens) -->
                 <div class="hidden sm:flex sm:ml-6">
@@ -69,10 +69,10 @@
     <!-- Menu Mobile -->
     <div class="sm:hidden" x-show="open">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">User</a>
-            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fakultas</a>
-            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Program Studi</a>
-            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beasiswa</a>
+            <a href="{{route('admin-users')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">User</a>
+            <a href="{{route('admin-fakultas')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fakultas</a>
+            <a href="{{route('admin-prodi')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Program Studi</a>
+            <a href="{{route('admin-beasiswa')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beasiswa</a>
         </div>
     </div>
 </nav>
