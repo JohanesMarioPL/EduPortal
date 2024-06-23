@@ -5,7 +5,9 @@ use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PengajuanController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [LoginController::class, 'indexLogin']);
 Route::post('/', [LoginController::class, 'userLogin'])->name('userLogin');
@@ -49,6 +51,9 @@ Route::middleware(['CheckRoles'])->group(function () {
     // User
 
 });
-
-Route::get('/user', [LoginController::class, 'indexUser']);
+Route::get('/user', [LoginController::class, 'indexUser'])->name('user.users.index');
+Route::get('/user/pengajuan', [PengajuanController::class, 'index'])->name('user.pengajuan');
+Route::post('/user/pengajuan', [PengajuanController::class, 'store'])->name('user.pengajuan.store');
+Route::get('/pengajuan/{id}', [PengajuanController::class, 'show'])->name('user.pengajuan.show');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
