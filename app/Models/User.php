@@ -6,10 +6,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $table = "users";
+    protected $primaryKey = "nrp";
+    protected $keyType = "string";
+    public $incrementing = false;
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +24,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'nrp',
+        'username',
         'password',
+        'role_id',
+        'nama',
+        'email',
+        'fakultas_id',
+        'program_studi_id'
     ];
 
     /**
@@ -29,19 +41,46 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+//    protected $casts = [
+//        'password' => 'hashed',
+//    ];
+
+    public function isAdmin() {
+        return $this->role_id === 1;
+    }
+
+    public function isFakultas() {
+        return $this->role_id === 2;
+    }
+    public function isProdi()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->role_id === 3;
+    }
+
+    public function isUser()
+    {
+        return $this->role_id === 4;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'program_studi_id');
+    }
+
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id');
     }
 }
