@@ -266,6 +266,7 @@
                     <label for="edit-program-studi" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Program Studi</label>
                     <select id="edit-program-studi" name="program_studi" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
                         <option value="null">Pilih Program Studi</option>
+
                         @foreach($getProdi as $prodi)
                             <option value="{{ $prodi->program_studi_id }}">{{ $prodi->nama_program_studi }}</option>
                         @endforeach

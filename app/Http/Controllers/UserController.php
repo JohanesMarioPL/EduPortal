@@ -19,6 +19,7 @@ class UserController extends Controller
         $users = User::select(['nrp', 'username', 'password', 'role_id', 'nama', 'email', 'fakultas_id', 'program_studi_id'])->paginate(5);
         $loggedUserId = Auth::user()->nrp;
         return response()->view('admin.user', ['users' => $users, 'getRole' => $getRole, 'getProdi' => $getProdi, 'getFakultas' => $getFakultas, 'loggedUserId' => $loggedUserId] );
+      
     }
 
     public function storeUser(Request $request)

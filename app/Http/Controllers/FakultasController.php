@@ -98,7 +98,7 @@ class FakultasController extends Controller
 
         return redirect()->route('admin-fakultas')->with('success', 'Fakultas berhasil ditambahkan');
     }
-
+  
     public function storePeriode(Request $request)
     {
         $request->validate([
