@@ -3,11 +3,9 @@
 use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PengajuanController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', [LoginController::class, 'indexLogin']);
 Route::post('/', [LoginController::class, 'userLogin'])->name('userLogin');
@@ -31,10 +29,11 @@ Route::middleware(['CheckRoles'])->group(function () {
     Route::delete('/admin/fakultas/{id}', [FakultasController::class, 'destroy'])->name('admin.fakultas.destroy');
 
     // Admin - Program Studi
-    Route::get('/admin/program-studi', [ProdiController::class, 'getProdi'])->name('admin-prodi');
-    Route::post('/admin/program-studi', [ProdiController::class, 'store'])->name('admin.prodi.store');
-    Route::put('/admin/program-studi/{id}', [ProdiController::class, 'update'])->name('admin.prodi.update');
-    Route::delete('/admin/program-studi/{id}', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
+
+    Route::get('/admin/program-studi', [ProgramStudiController::class, 'getProdi'])->name('admin-prodi');
+    Route::post('/admin/program-studi', [ProgramStudiController::class, 'store'])->name('admin.prodi.store');
+    Route::put('/admin/program-studi/{id}', [ProgramStudiController::class, 'update'])->name('admin.prodi.update');
+    Route::delete('/admin/program-studi/{id}', [ProgramStudiController::class, 'destroy'])->name('admin.prodi.destroy');
 
     // Admin - Beasiswa
     Route::get('/admin/beasiswa', [BeasiswaController::class, 'getBeasiswa'])->name('admin-beasiswa');
@@ -45,12 +44,33 @@ Route::middleware(['CheckRoles'])->group(function () {
     // Fakultas
     Route::get('/fakultas', [LoginController::class, 'indexFakultas'])->name('fakultas.users.index');
 
+    // Fakultas - Periode
+    Route::get('/fakultas/periode', [FakultasController::class, 'periodeFakultas'])->name('fakultas.periode');
+    Route::post('/fakultas/periode', [FakultasController::class, 'storePeriode'])->name('fakultas.periode.store');
+    Route::put('/fakultas/periode/{id}', [FakultasController::class, 'updatePeriode'])->name('fakultas.periode.update');
+    Route::delete('/fakultas/periode/{id}', [FakultasController::class, 'destroyPeriode'])->name('fakultas.periode.destroy');
+
+    // Fakultas - Mahasiswa
+    Route::get('/fakultas/mahasiswa', [FakultasController::class, 'mahasiswaFakultas'])->name('fakultas.mahasiswa');
+    Route::get('/fakultas/perperiode/{periode_id}', [FakultasController::class, 'mahasiswaFakultasPeriode'])->name('fakultas.perperiode');
+    Route::put('/fakultas/perperiode/{pengajuan_id}', [FakultasController::class, 'mahasiswaFakultasPeriodeHasil'])->name('fakultas.perperiode.approval');
+    Route::post('/fakultas/perperiode/updateStatus/{id}', [FakultasController::class, 'updateStatus'])->name('fakultas.periode.updateStatus');
+
+    // Fakultas - Riwayat
+    Route::get('/fakultas/riwayat', [FakultasController::class, 'riwayat'])->name('fakultas.riwayat');
+    Route::get('/fakultas/riwayat/{periode_id}/status', [FakultasController::class, 'showStatusByPeriode'])->name('fakultas.riwayat.status');
+
     // Program Studi
-    Route::get('/program-studi', [LoginController::class, 'indexProdi']);
+    Route::get('/program-studi', [LoginController::class, 'indexProdi'])->name('program-studi.index');
+    Route::get('/program-studi/pengajuan', [ProgramStudiController::class, 'pengajuan'])->name('program-studi.pengajuan');
+    Route::get('/program-studi/riwayat', [ProgramStudiController::class, 'riwayat'])->name('program-studi.riwayat');
+    Route::get('/program-studi/riwayat/{periode_id}/pengajuan', [ProgramStudiController::class, 'showPengajuanByPeriode'])->name('program-studi.riwayat.pengajuan');
+    Route::post('/program-studi/pengajuan/{id}/approve', [ProgramStudiController::class, 'approvePengajuan'])->name('program-studi.pengajuan.approve');
 
     // User
 
 });
+
 Route::get('/user', [LoginController::class, 'indexUser'])->name('user.users.index');
 Route::get('/user/pengajuan', [PengajuanController::class, 'index'])->name('user.pengajuan');
 Route::post('/user/pengajuan', [PengajuanController::class, 'store'])->name('user.pengajuan.store');

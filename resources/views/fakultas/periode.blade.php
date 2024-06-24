@@ -1,5 +1,5 @@
-@extends('layout.admin')
-@section('title', 'Program Studi - EduPortal')
+@extends('layout.fakultas')
+@section('title', 'Periode - EduPortal')
 
 @section('content')
     <div class="w-full xl:w-full px-4 mx-auto mt-24">
@@ -7,7 +7,7 @@
             <div class="rounded-t mb-0 px-4 py-3 bg-blueGray-50">
                 <div class="flex flex-wrap items-center">
                     <div class="relative w-full max-w-full flex-grow flex-1">
-                        <h3 class="font-semibold text-base text-blueGray-700">Data Program Studi</h3>
+                        <h3 class="font-semibold text-base text-blueGray-700">Data Periode</h3>
                     </div>
                 </div>
                 <div class="rounded-t mb-0 px-4 py-3 bg-blueGray-50">
@@ -16,7 +16,7 @@
                             TAMBAH
                         </button>
                         <div class="relative">
-                            <input type="text" id="searchInput" placeholder="search program studi..." class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-56 shadow-xl">
+                            <input type="text" id="searchInput" placeholder="search Periode..." class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-56 shadow-xl">
                             <button id="searchButton" class="bg-indigo-500 hover:bg-indigo-600 text-white rounded-md px-4 py-2 ml-2">Cari</button>
                         </div>
                     </div>
@@ -27,10 +27,16 @@
                     <thead>
                     <tr>
                         <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Program Studi ID
+                            Periode ID
                         </th>
                         <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Nama Program Studi
+                            Periode
+                        </th>
+                        <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Tanggal Mulai
+                        </th>
+                        <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Tanggal Akhir
                         </th>
                         <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                             Fakultas
@@ -41,44 +47,57 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($prodi as $p)
+                    @foreach($periode as $p)
                         <tr>
                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                                {{ $p->program_studi_id }}
+                                {{ $p->periode_id }}
                             </td>
                             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                                {{ $p->nama_program_studi}}
+                                {{ $p->nama_periode }}
                             </td>
-                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                {{ $p->fakultas->nama_fakultas }}
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                {{ $p->tanggal_mulai }}
+                            </td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                {{ $p->tanggal_berakhir }}
+                            </td>
+                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                {{ $p->fakultas_id }}
                             </td>
                             <td>
-                                <a href="#" class="edit-button bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                   data-prodi-id="{{ $p->program_studi_id }}"
-                                   data-prodi-nama="{{ $p->nama_program_studi }}"
-                                   data-prodi-fakultas="{{ $p->fakultas_id }}"
-                                   data-action="{{ route('admin.prodi.update', $p->program_studi_id) }}">Edit</a>
+                                <a href="#"
+                                   class="edit-button bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                   data-periode-id="{{ $p->periode_id }}"
+                                   data-nama-periode="{{ $p->nama_periode }}"
+                                   data-tanggal-mulai="{{ $p->tanggal_mulai }}"
+                                   data-tanggal-berakhir="{{ $p->tanggal_berakhir }}"
+                                   data-fakultas-id="{{ $p->fakultas_id }}"
+                                   data-action="{{ route('fakultas.periode.update', $p->periode_id) }}">
+                                    Edit
+                                </a>
                                 <button class="delete-button bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        data-prodi-id="{{ $p->program_studi_id }}"
-                                        data-prodi-nama="{{ $p->nama_program_studi }}">Delete</button>
+                                        data-periode-id="{{ $p->periode_id }}"
+                                        data-periode-nama="{{ $p->nama_periode }}">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{ $prodi->links() }}
+                    {{ $periode->links() }}
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Main modal -->
+    <!-- Modal Tambah/Edit Periode -->
     <div id="crud-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
             <!-- Modal content -->
             <div class="flex items-center justify-between pb-4 border-b">
-                <h3 class="text-lg font-semibold text-gray-900" id="modal-title">Tambah Data Program Studi</h3>
+                <h3 class="text-lg font-semibold text-gray-900" id="modal-title">Tambah Data Periode</h3>
                 <button id="close-modal" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -88,21 +107,30 @@
             <!-- Modal body -->
             <form id="crud-form" class="grid gap-4 mb-4 grid-cols-2" method="POST">
                 @csrf
+                <input type="hidden" name="_method" id="form-method">
                 <div class="col-span-2">
-                    <label for="program_studi_id" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Program Studi ID</label>
-                    <input type="text" id="program_studi_id" name="program_studi_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="Enter Program Studi ID">
+                    <label for="periode_id" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Periode ID</label>
+                    <input type="text" id="periode_id" name="periode_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="Enter Periode ID">
                 </div>
                 <div class="col-span-2">
-                    <label for="nama_program_studi" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Nama Program Studi</label>
-                    <input type="text" id="nama_program_studi" name="nama_program_studi" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="Enter Nama Program Studi">
+                    <label for="nama_periode" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Periode</label>
+                    <input type="text" id="nama_periode" name="nama_periode" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="Enter Periode">
                 </div>
                 <div class="col-span-2">
-                    <label for="fakultas" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Fakultas</label>
-                    <select id="fakultas" name="fakultas_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                            <option value="">Pilih Fakultas</option>
-                            @foreach($fakultas as $f)
-                                <option value="{{ $f->fakultas_id }}">{{ $f->nama_fakultas }}</option>
-                            @endforeach
+                    <label for="tanggal_mulai" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Tanggal Awal</label>
+                    <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="">
+                </div>
+                <div class="col-span-2">
+                    <label for="tanggal_berakhir" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Tanggal Berakhir</label>
+                    <input type="date" id="tanggal_berakhir" name="tanggal_berakhir" class="border border-gray-300 rounded-lg px-3 py-2 w-full" placeholder="">
+                </div>
+                <div class="col-span-2">
+                    <label for="fakultas_id" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Fakultas</label>
+                    <select id="fakultas_id" name="fakultas_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
+                        <option value="">Pilih Fakultas</option>
+                        @foreach($fakultas as $f)
+                            <option value="{{ $f->fakultas_id }}">{{ $f->nama_fakultas }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <!-- Modal footer -->
@@ -111,19 +139,19 @@
                         Batal
                     </button>
                     <button type="submit" id="crud-submit-button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Simpan
+                        Tambah
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Konfirmasi Hapus -->
+    <!-- Modal Hapus Periode -->
     <div id="confirm-delete-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
             <!-- Modal content -->
             <div class="flex items-center justify-between pb-4 border-b">
-                <h3 class="text-lg font-semibold text-gray-900">Konfirmasi Hapus</h3>
+                <h3 class="text-lg font-semibold text-gray-900">Hapus Data Periode</h3>
                 <button id="close-delete-modal" class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -131,20 +159,21 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <p class="mb-4">Apakah Anda yakin ingin menghapus program studi <b><span id="delete-prodi-nama"></span></b> ?</p>
-            <form id="delete-form" method="POST">
-                @csrf
-                @method('DELETE')
-                <!-- Modal footer -->
-                <div class="flex justify-end pt-4">
-                    <button type="button" id="cancel-delete" class="text-gray-700 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">
-                        Batal
-                    </button>
+            <div class="my-4">
+                <p>Apakah Anda yakin ingin menghapus Periode <span id="delete-nama-periode" class="font-bold"></span>?</p>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex justify-end pt-4">
+                <button type="button" id="cancel-delete" class="text-gray-700 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">
+                    Batal
+                </button>
+                <form id="delete-form" method="POST">
+                    @csrf
                     <button type="submit" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Hapus
                     </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -166,7 +195,6 @@
     @endif
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             const editButtons = document.querySelectorAll('.edit-button');
             const deleteButtons = document.querySelectorAll('.delete-button');
@@ -177,45 +205,52 @@
             const crudForm = document.getElementById('crud-form');
             const crudSubmitButton = document.getElementById('crud-submit-button');
             const cancelButton = document.getElementById('cancel-button');
-            const programStudiId = document.getElementById('program_studi_id');
-            const namaProgramStudi = document.getElementById('nama_program_studi');
-            const fakultasSelect = document.getElementById('fakultas');
+            const periodeId = document.getElementById('periode_id');
+            const namaPeriode = document.getElementById('nama_periode');
+            const tanggalMulai = document.getElementById('tanggal_mulai');
+            const tanggalBerakhir = document.getElementById('tanggal_berakhir');
+            const fakultas = document.getElementById('fakultas_id');
 
             const deleteModal = document.getElementById('confirm-delete-modal');
             const closeDeleteModalButton = document.getElementById('close-delete-modal');
             const cancelDeleteButton = document.getElementById('cancel-delete');
             const deleteForm = document.getElementById('delete-form');
-            const deleteProdiNama = document.getElementById('delete-prodi-nama');
+            const deleteProdiNama = document.getElementById('delete-nama-periode');
 
             openModalButton.addEventListener('click', () => {
-                crudForm.action = "{{ route('admin.prodi.store') }}";
+                crudForm.action = "{{ route('fakultas.periode.store') }}";
                 crudForm.method = 'POST';
-                modalTitle.textContent = 'Tambah Data Program Studi';
+                modalTitle.textContent = 'Tambah Data Periode';
                 crudSubmitButton.textContent = 'Tambah';
-                programStudiId.readOnly = false;
-                programStudiId.value = '';
-                namaProgramStudi.value = '';
-                fakultasSelect.value = '';
+                periodeId.readOnly = false;
+                periodeId.value = '';
+                namaPeriode.value = '';
+                tanggalMulai.value = '';
+                tanggalBerakhir.value = '';
+                fakultas.value = '';
                 modal.classList.remove('hidden');
             });
 
             editButtons.forEach(button => {
                 button.addEventListener('click', function (event) {
                     event.preventDefault();
-                    const id = button.getAttribute('data-prodi-id');
-                    const nama = button.getAttribute('data-prodi-nama');
-                    const fakultasId = button.getAttribute('data-prodi-fakultas');
-                    const action = button.getAttribute('data-action');
+                    const id = button.getAttribute('data-periode-id');
+                    const nama = button.getAttribute('data-nama-periode');
+                    const tanggalmulai = button.getAttribute('data-tanggal-mulai');
+                    const tanggalberakhir = button.getAttribute('data-tanggal-berakhir');
+                    const fakultasselect = button.getAttribute('data-fakultas-id');
 
-                    crudForm.action = action;
+                    crudForm.action = `/fakultas/periode/${id}`;
                     crudForm.method = 'POST';
-                    crudForm.insertAdjacentHTML('beforeend', '@method("PUT")');
-                    modalTitle.textContent = 'Edit Data Program Studi';
+                    document.getElementById('form-method').value = 'PUT';
+                    modalTitle.textContent = 'Edit Data Periode';
                     crudSubmitButton.textContent = 'Simpan';
-                    programStudiId.readOnly = true;
-                    programStudiId.value = id;
-                    namaProgramStudi.value = nama;
-                    fakultasSelect.value = fakultasId;
+                    periodeId.readOnly = true;
+                    periodeId.value = id;
+                    namaPeriode.value = nama;
+                    tanggalMulai.value = tanggalmulai;
+                    tanggalBerakhir.value = tanggalberakhir;
+                    fakultas.value = fakultasselect;
                     modal.classList.remove('hidden');
                 });
             });
@@ -223,11 +258,17 @@
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function (event) {
                     event.preventDefault();
-                    const id = button.getAttribute('data-prodi-id');
-                    const nama = button.getAttribute('data-prodi-nama');
-                    const action = "{{ route('admin.prodi.destroy', '') }}/" + id;
+                    const id = button.getAttribute('data-periode-id');
+                    const nama = button.getAttribute('data-nama-periode');
+                    const action = "{{ route('fakultas.periode.destroy', '') }}/" + id;
 
                     deleteForm.action = action;
+                    deleteForm.method = 'POST';
+                    const deleteMethodInput = document.createElement('input');
+                    deleteMethodInput.type = 'hidden';
+                    deleteMethodInput.name = '_method';
+                    deleteMethodInput.value = 'DELETE';
+                    deleteForm.appendChild(deleteMethodInput);
                     deleteProdiNama.textContent = nama;
                     deleteModal.classList.remove('hidden');
                 });

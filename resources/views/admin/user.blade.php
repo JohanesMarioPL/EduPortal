@@ -55,6 +55,7 @@
                     </thead>
                     <tbody>
                     @foreach($users as $user)
+                        @if($user -> nrp != $loggedUserId)
                         <tr>
                             <th
                                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
@@ -113,6 +114,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
@@ -263,7 +265,8 @@
                 <div class="col-span-2">
                     <label for="edit-program-studi" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Program Studi</label>
                     <select id="edit-program-studi" name="program_studi" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Program Studi</option>
+                        <option value="null">Pilih Program Studi</option>
+
                         @foreach($getProdi as $prodi)
                             <option value="{{ $prodi->program_studi_id }}">{{ $prodi->nama_program_studi }}</option>
                         @endforeach
@@ -272,7 +275,7 @@
                 <div class="col-span-2">
                     <label for="edit-fakultas" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Fakultas</label>
                     <select id="edit-fakultas" name="fakultas" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Fakultas</option>
+                        <option value="null">Pilih Fakultas</option>
                         @foreach($getFakultas as $fakultas)
                             <option value="{{ $fakultas->fakultas_id }}">{{ $fakultas->nama_fakultas }}</option>
                         @endforeach
@@ -436,6 +439,7 @@
                     editForm.action = action;
                     editNrp.value = userId;
                     editUsername.value = userUsername;
+                    editIPK.value = userIPK;
                     editNama.value = userName;
                     editEmail.value = userEmail;
                     editProgramStudi.value = userProgramStudi;

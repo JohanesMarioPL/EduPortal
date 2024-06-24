@@ -234,6 +234,7 @@
             const dokumenSKTM = document.getElementById('dokumenSKTM');
             const dokumenTagihanListrik = document.getElementById('dokumenTagihanListrik');
 
+
             const deleteModal = document.getElementById('confirm-delete-modal');
             const closeDeleteModalButton = document.getElementById('close-delete-modal');
             const cancelDeleteButton = document.getElementById('cancel-delete');

@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'program_studi_id');
+    }
+
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id');
+    }
 }

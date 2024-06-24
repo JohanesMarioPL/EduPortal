@@ -8,20 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Pengajuan extends Model
 {
     use HasFactory;
+    protected $table = "pengajuan_beasiswa";
+    protected $primaryKey = "pengajuan_id";
+    protected $keyType = "bigInteger";
+    public $incrementing = false;
+    public $timestamps = true;
 
-    // Nama tabel di database
-    protected $table = 'pengajuan_beasiswa';
-
-    // Primary Key
-    protected $primaryKey = 'pengajuan_id';
-
-    // Kolom yang dapat diisi
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
+        "pengajuan_id",
         'jenis_beasiswa_id',
+        'nrp',
         'periode_id',
         'tanggal_pengajuan',
         'status_pengajuan',
-        'IPK',
+        "IPK",
         'portofolio',
         'dokumenPKM',
         'dokumenTidakMenerimaBeasiswaLain',
@@ -30,14 +35,21 @@ class Pengajuan extends Model
         'dokumenTagihanListrik',
     ];
 
-    // Timestamp kolom created_at dan updated_at
-    public $timestamps = true;
+    // Definisikan relasi ke model User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'nrp', 'nrp');
+    }
 
-    // Menentukan tipe data untuk kolom tertentu
-    protected $casts = [
-        'tanggal_pengajuan' => 'date',
-        'status_pengajuan' => 'string',
-        'IPK' => 'float',
-        'portofolio' => 'integer',
-    ];
+    // Definisikan relasi ke model Beasiswa
+    public function beasiswa()
+    {
+        return $this->belongsTo(Beasiswa::class, 'jenis_beasiswa_id', 'jenis_beasiswa_id');
+    }
+
+    // Definisikan relasi ke model Periode
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class, 'periode_id', 'periode_id');
+    }
 }

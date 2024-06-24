@@ -33,33 +33,40 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{route('admin.users.index')}}" class="font-bold text-lg text-black">EduPortal</a>
+                    <a href="{{ route('program-studi.index') }}" class="font-bold text-lg text-black">EduPortal</a>
                 </div>
-                                <div class="hidden sm:flex sm:ml-6">
-                                    <div class="flex space-x-4">
-                                        <a href="#"
-                                           class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                                            Beasiswa</a>
-                                    </div>
-                                </div>
+                <div class="hidden sm:flex sm:ml-6">
+                    <div class="flex space-x-4">
+                        <a href="{{ route('program-studi.pengajuan') }}"
+                           class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                            Pengajuan</a>
+                    </div>
+                </div>
+                <div class="hidden sm:flex sm:ml-6">
+                    <div class="flex space-x-4">
+                        <a href="{{ route('program-studi.riwayat') }}"
+                           class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                            Riwayat</a>
+                    </div>
+                </div>
             </div>
             <!-- Logout Button for Desktop (hidden on small screens) -->
             <div class="hidden sm:flex items-center">
                 <a href="{{ route('logout') }}"
                    class="text-red-500 hover:bg-gray-100 hover:text-red-500 rounded-md px-3 py-2 text-sm font-medium">Logout</a>
             </div>
+
         </div>
     </div>
     <!-- Menu Mobile -->
-        <div class="sm:hidden" x-show="open">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beasiswa</a>
-            </div>
+    <div class="sm:hidden" x-show="open">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="{{ route('program-studi.pengajuan') }}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Pengajuan</a>
+            <a href="{{ route('program-studi.riwayat') }}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Riwayat</a>
         </div>
+    </div>
 </nav>
 <!-- End Navbar -->
-
-
 
 <!-- Content -->
 <div class="container mx-auto mt-16">

@@ -33,18 +33,23 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{route('admin.users.index')}}" class="font-bold text-lg text-black">EduPortal</a>
+                    <a href="{{route('fakultas.users.index')}}" class="font-bold text-lg text-black">EduPortal</a>
                 </div>
                 <div class="hidden sm:flex sm:ml-6">
                     <div class="flex space-x-4">
-                        <a href="#"
+                        <a href="{{route('fakultas.periode')}}"
                            class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                            Pengajuan Beasiswa</a>
+                            Periode</a>
                     </div>
                     <div class="flex space-x-4">
-                        <a href="#"
+                        <a href="{{route('fakultas.mahasiswa')}}"
                            class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                             Mahasiswa</a>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="{{route('fakultas.riwayat')}}"
+                           class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                            Riwayat</a>
                     </div>
                 </div>
             </div>
@@ -58,8 +63,9 @@
     <!-- Menu Mobile -->
     <div class="sm:hidden" x-show="open">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Pengajuan Beasiswa</a>
+            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Periode</a>
             <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mahasiswa</a>
+            <a href="#" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beasiswa</a>
         </div>
     </div>
 </nav>

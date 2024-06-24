@@ -7,6 +7,7 @@ use App\Models\Prodi;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +17,9 @@ class UserController extends Controller
         $getProdi = Prodi::select(['program_studi_id', 'nama_program_studi'])->get();
         $getFakultas = Fakultas::select(['fakultas_id', 'nama_fakultas'])->get();
         $users = User::select(['nrp', 'username', 'password', 'role_id', 'nama', 'email', 'fakultas_id', 'program_studi_id'])->paginate(5);
-        return response()->view('admin.user', ['users' => $users, 'getRole' => $getRole, 'getProdi' => $getProdi, 'getFakultas' => $getFakultas]);
+        $loggedUserId = Auth::user()->nrp;
+        return response()->view('admin.user', ['users' => $users, 'getRole' => $getRole, 'getProdi' => $getProdi, 'getFakultas' => $getFakultas, 'loggedUserId' => $loggedUserId] );
+      
     }
 
     public function storeUser(Request $request)
@@ -31,6 +34,17 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
+        $fakultas = $request->fakultas;
+        if ($fakultas === 'null') {
+            $fakultas = null;
+        }
+
+        $program_studi = $request->program_studi;
+        if ($program_studi === 'null') {
+            $program_studi = null;
+        }
+
+        // Buat pengguna baru
         User::create([
             'nrp' => $request->nrp,
             'username' => $request->username,
@@ -38,8 +52,8 @@ class UserController extends Controller
             'role_id' => $request->role,
             'nama' => $request->nama,
             'email' => $request->email,
-            'fakultas_id' => $request->fakultas,
-            'program_studi_id' => $request->program_studi,
+            'fakultas_id' => $fakultas,
+            'program_studi_id' => $program_studi,
         ]);
 
         return redirect()->route('admin-users')->with('success', 'User berhasil ditambahkan');
