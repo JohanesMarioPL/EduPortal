@@ -23,6 +23,9 @@
 
 ### Demo
 Account Administrator : username : `admin` password `12345678`
+
 Account Fakultas : username : `fakultaspsikologi` password `12345678`
+
 Account Program Studi : username : `psikologi` password `12345678`
+
 Account User : username : `dummyuser3` password `12345678`
