@@ -18,7 +18,7 @@
 
 9. lalu seed database `npx sequelize-cli db:seed:all`
 
-10. jalankan program `php artisan generate` 
+10. jalankan program `php artisan serve` 
 
 
 ### Demo
