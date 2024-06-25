@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
@@ -7,10 +6,10 @@ use Illuminate\Http\Request;
 
 class BeasiswaController extends Controller
 {
-    public function getBeasiswa(Beasiswa $beasiswa)
+    public function getBeasiswa()
     {
-        $beasiswa = Beasiswa::select(['jenis_beasiswa_id','nama_jenis_beasiswa'])->paginate(5);
-        return Response()->view('admin.beasiswa', ['beasiswa' => $beasiswa]);
+        $beasiswa = Beasiswa::select(['jenis_beasiswa_id', 'nama_jenis_beasiswa'])->paginate(5);
+        return view('admin.beasiswa', ['beasiswa' => $beasiswa]);
     }
 
     public function store(Request $request)
@@ -22,8 +21,9 @@ class BeasiswaController extends Controller
 
         Beasiswa::create($request->only('jenis_beasiswa_id', 'nama_jenis_beasiswa'));
 
-        return redirect()->route('admin-beasiswa')->with('success', 'Data beasiswa berhasil ditambahkan.');
+        return redirect()->route('admin.beasiswa')->with('success', 'Data beasiswa berhasil ditambahkan.');
     }
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -33,13 +33,13 @@ class BeasiswaController extends Controller
         $beasiswa = Beasiswa::findOrFail($id);
         $beasiswa->update($request->only('nama_jenis_beasiswa'));
 
-        return redirect()->route('admin-beasiswa')->with('success', 'Data beasiswa berhasil diperbarui.');
+        return redirect()->route('admin.beasiswa')->with('success', 'Data beasiswa berhasil diperbarui.');
     }
 
     public function destroy($jenis_beasiswa_id)
     {
         $beasiswa = Beasiswa::findOrFail($jenis_beasiswa_id);
         $beasiswa->delete();
-        return redirect()->route('admin-beasiswa')->with('success', 'Data beasiswa berhasil dihapus.');
+        return redirect()->route('admin.beasiswa')->with('success', 'Data beasiswa berhasil dihapus.');
     }
 }

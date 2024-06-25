@@ -26,4 +26,11 @@ class Periode extends Model
         'tanggal_berakhir',
         'fakultas_id',
     ];
+
+    // Periode.php
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id', 'fakultas_id');
+    }
+
 }
