@@ -46,5 +46,54 @@ class ProgramStudiController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Pengajuan not found or invalid status']);
     }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'program_studi_id' => 'required|string|max:10|unique:program_studi',
+            'nama_program_studi' => 'required|string|max:255',
+            'fakultas_id' => 'required|exists:fakultas,fakultas_id',
+        ]);
+
+        Prodi::create([
+            'program_studi_id' => $request->program_studi_id,
+            'nama_program_studi' => $request->nama_program_studi,
+            'fakultas_id' => $request->fakultas_id,
+        ]);
+
+        return redirect()->route('admin.program-studi')->with('success', 'Data program studi berhasil ditambahkan.');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_program_studi' => 'required|string|max:255',
+            'fakultas_id' => 'required|exists:fakultas,fakultas_id',
+        ]);
+
+        $programStudi = Prodi::findOrFail($id);
+        $programStudi->update([
+            'nama_program_studi' => $request->nama_program_studi,
+            'fakultas_id' => $request->fakultas_id,
+        ]);
+
+        return redirect()->route('admin.program-studi')->with('success', 'Data program studi berhasil diperbarui.');
+    }
+
+
+
+    public function destroy($id)
+    {
+        $programStudi = Prodi::findOrFail($id);
+        $programStudi->delete();
+
+        return redirect()->route('admin.program-studi')->with('success', 'Data program studi berhasil dihapus.');
+    }
+
+public function getProdi()
+    {
+        $prodi = Prodi::with('fakultas')->paginate(5);
+        $fakultas = Fakultas::all();
+        return view('admin.program-studi', ['prodi' => $prodi, 'fakultas' => $fakultas]);
+    }
 }
 

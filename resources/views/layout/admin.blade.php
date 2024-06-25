@@ -48,7 +48,7 @@
                             Fakultas</a>
                     </div>
                     <div class="flex space-x-4">
-                        <a href="{{route('admin-prodi')}}"
+                        <a href="{{route('admin.program-studi')}}"
                            class="text-base-500 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                             Program Studi</a>
                     </div>
@@ -71,7 +71,7 @@
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{route('admin-users')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">User</a>
             <a href="{{route('admin-fakultas')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Fakultas</a>
-            <a href="{{route('admin-prodi')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Program Studi</a>
+            <a href="{{route('admin.program-studi')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Program Studi</a>
             <a href="{{route('admin-beasiswa')}}" class="text-base-500 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beasiswa</a>
         </div>
     </div>

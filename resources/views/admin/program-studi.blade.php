@@ -57,7 +57,7 @@
                                    data-prodi-id="{{ $p->program_studi_id }}"
                                    data-prodi-nama="{{ $p->nama_program_studi }}"
                                    data-prodi-fakultas="{{ $p->fakultas_id }}"
-                                   data-action="{{ route('admin.prodi.update', $p->program_studi_id) }}">Edit</a>
+                                   data-action="{{ route('admin.program-studi.update', $p->program_studi_id) }}">Edit</a>
                                 <button class="delete-button bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         data-prodi-id="{{ $p->program_studi_id }}"
                                         data-prodi-nama="{{ $p->nama_program_studi }}">Delete</button>
@@ -99,10 +99,10 @@
                 <div class="col-span-2">
                     <label for="fakultas" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Fakultas</label>
                     <select id="fakultas" name="fakultas_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                            <option value="">Pilih Fakultas</option>
-                            @foreach($fakultas as $f)
-                                <option value="{{ $f->fakultas_id }}">{{ $f->nama_fakultas }}</option>
-                            @endforeach
+                        <option value="">Pilih Fakultas</option>
+                        @foreach($fakultas as $f)
+                            <option value="{{ $f->fakultas_id }}">{{ $f->nama_fakultas }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <!-- Modal footer -->
@@ -166,7 +166,6 @@
     @endif
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             const editButtons = document.querySelectorAll('.edit-button');
             const deleteButtons = document.querySelectorAll('.delete-button');
@@ -188,7 +187,7 @@
             const deleteProdiNama = document.getElementById('delete-prodi-nama');
 
             openModalButton.addEventListener('click', () => {
-                crudForm.action = "{{ route('admin.prodi.store') }}";
+                crudForm.action = "{{ route('admin.program-studi.store') }}";
                 crudForm.method = 'POST';
                 modalTitle.textContent = 'Tambah Data Program Studi';
                 crudSubmitButton.textContent = 'Tambah';
@@ -225,7 +224,7 @@
                     event.preventDefault();
                     const id = button.getAttribute('data-prodi-id');
                     const nama = button.getAttribute('data-prodi-nama');
-                    const action = "{{ route('admin.prodi.destroy', '') }}/" + id;
+                    const action = "{{ route('admin.program-studi.destroy', '') }}/" + id;
 
                     deleteForm.action = action;
                     deleteProdiNama.textContent = nama;

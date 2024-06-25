@@ -21,16 +21,16 @@ class LoginController extends Controller
 
     public function welcome()
     {
-    //        $user = new User();
-    //        $user->nrp='72021';
-    //        $user->username='johndoe';
-    //        $user->password=Hash::make('12345678');
-    //        $user->role_id=3;
-    //        $user->nama='john doe';
-    //        $user->email='johndoe@gmail.com';
-    //        $user->fakultas_id=1;
-    //        $user->program_studi_id=2;
-    //        $user->save();
+        //        $user = new User();
+        //        $user->nrp='72021';
+        //        $user->username='johndoe';
+        //        $user->password=Hash::make('12345678');
+        //        $user->role_id=3;
+        //        $user->nama='john doe';
+        //        $user->email='johndoe@gmail.com';
+        //        $user->fakultas_id=1;
+        //        $user->program_studi_id=2;
+        //        $user->save();
         return Response()->view('welcome');
     }
 

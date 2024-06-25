@@ -55,65 +55,61 @@
                     </thead>
                     <tbody>
                     @foreach($users as $user)
-                        @if($user -> nrp != $loggedUserId)
-                        <tr>
-                            <th
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                                {{ $user->nrp }}
-                            </th>
-                            <th
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                                {{ $user->username}}
-                            </th>
-                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                                {{ $user->nama }}
-                            </td>
-                            <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                {{ $user->email }}
-                            </td>
-                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                @foreach($getProdi as $prodi)
-                                    @if($prodi->program_studi_id == $user->program_studi_id)
-                                        {{ $prodi->nama_program_studi }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                @foreach($getFakultas as $fakultas)
-                                    @if($fakultas->fakultas_id == $user->fakultas_id)
-                                        {{ $fakultas->nama_fakultas }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                @foreach($getRole as $role)
-                                    @if($role->role_id == $user->role_id)
-                                        {{ $role->nama_role }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
-                            <td>
-                                <a href="#"
-                                   class="edit-button bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                   data-user-id="{{ $user->nrp }}"
-                                   data-user-username="{{ $user->username }}"
-                                   data-user-nama="{{ $user->nama }}"
-                                   data-user-email="{{ $user->email }}"
-                                   data-user-program-studi="{{ $user->program_studi_id }}"
-                                   data-user-fakultas="{{ $user->fakultas_id }}"
-                                   data-user-role="{{ $user->role_id }}"
-                                   data-action="{{ route('admin.users.update', $user->nrp) }}">
-                                    Edit
-                                </a>
-                            <button class="delete-button bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        data-user-id="{{ $user->nrp }}"
-                                        data-user-name="{{ $user->nama }}"
-                                        data-action="{{ route('admin.users.destroy', $user->nrp) }}">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                        @if($user->nrp != $loggedUserId)
+                            <tr>
+                                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                    {{ $user->nrp }}
+                                </th>
+                                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                    {{ $user->username}}
+                                </th>
+                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                                    {{ $user->nama }}
+                                </td>
+                                <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {{ $user->email }}
+                                </td>
+                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    @foreach($getProdi as $prodi)
+                                        @if($prodi->program_studi_id == $user->program_studi_id)
+                                            {{ $prodi->nama_program_studi }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    @foreach($getFakultas as $fakultas)
+                                        @if($fakultas->fakultas_id == $user->fakultas_id)
+                                            {{ $fakultas->nama_fakultas }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    @foreach($getRole as $role)
+                                        @if($role->role_id == $user->role_id)
+                                            {{ $role->nama_role }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="#" class="edit-button bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                       data-user-id="{{ $user->nrp }}"
+                                       data-user-username="{{ $user->username }}"
+                                       data-user-nama="{{ $user->nama }}"
+                                       data-user-email="{{ $user->email }}"
+                                       data-user-program-studi="{{ $user->program_studi_id }}"
+                                       data-user-fakultas="{{ $user->fakultas_id }}"
+                                       data-user-role="{{ $user->role_id }}"
+                                       data-action="{{ route('admin.users.update', $user->nrp) }}">
+                                        Edit
+                                    </a>
+                                    <button class="delete-button bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            data-user-id="{{ $user->nrp }}"
+                                            data-user-name="{{ $user->nama }}"
+                                            data-action="{{ route('admin.users.destroy', $user->nrp) }}">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
                         @endif
                     @endforeach
                     </tbody>
@@ -125,8 +121,7 @@
         </div>
     </div>
 
-{{--Modal Tambah User--}}
-    <!-- Main modal -->
+    <!-- Modal Tambah User -->
     <div id="crud-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
             <!-- Modal content -->
@@ -160,7 +155,7 @@
                 <div class="col-span-1">
                     <label for="program-studi" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Program Studi</label>
                     <select id="program-studi" name="program_studi" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Program Studi</option>
+                        <option value="null">Pilih Program Studi</option>
                         @foreach($getProdi as $prodi)
                             <option value="{{ $prodi->program_studi_id }}">{{ $prodi->nama_program_studi }}</option>
                         @endforeach
@@ -169,7 +164,7 @@
                 <div class="col-span-1">
                     <label for="fakultas" class="block mb-2 mt-4 text-sm font-medium text-gray-900">Fakultas</label>
                     <select id="fakultas" name="fakultas" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Fakultas</option>
+                        <option value="null">Pilih Fakultas</option>
                         @foreach($getFakultas as $fakultas)
                             <option value="{{ $fakultas->fakultas_id }}">{{ $fakultas->nama_fakultas }}</option>
                         @endforeach
@@ -178,26 +173,25 @@
                 <div class="col-span-2">
                     <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
                     <select id="role" name="role" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Role</option>
+                        <option value="null">Pilih Role</option>
                         @foreach($getRole as $role)
                             <option value="{{ $role->role_id }}">{{ $role->nama_role }}</option>
                         @endforeach
                     </select>
                 </div>
 
-            <!-- Modal footer -->
-            <div class="flex pt-4">
-                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                    Tambah
-                </button>
-            </div>
+                <!-- Modal footer -->
+                <div class="flex pt-4">
+                    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                        Tambah
+                    </button>
+                </div>
             </form>
         </div>
     </div>
-{{--End Modal Tambah User--}}
+    <!-- End Modal Tambah User -->
 
-{{-- Modal Delete --}}
     <!-- Modal Konfirmasi Hapus -->
     <div id="confirm-delete-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
@@ -227,9 +221,8 @@
             </form>
         </div>
     </div>
-{{--End Modal Delete--}}
+    <!-- End Modal Konfirmasi Hapus -->
 
-{{--Modal Edit User--}}
     <!-- Modal Edit User -->
     <div id="edit-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div class="relative bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
@@ -284,7 +277,7 @@
                 <div class="col-span-2">
                     <label for="edit-role" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
                     <select id="edit-role" name="role" class="border border-gray-300 rounded-lg px-3 py-2 w-full">
-                        <option value="">Pilih Role</option>
+                        <option value="null">Pilih Role</option>
                         @foreach($getRole as $role)
                             <option value="{{ $role->role_id }}">{{ $role->nama_role }}</option>
                         @endforeach
@@ -303,7 +296,7 @@
             </form>
         </div>
     </div>
-    {{--End Modal Edit User--}}
+    <!-- End Modal Edit User -->
 
     <!-- Alert Notification -->
     @if(session('success'))
@@ -321,7 +314,6 @@
             <button type="button" class="close-alert float-right text-2xl leading-none font-semibold text-red-700" onclick="document.getElementById('error-alert').style.display='none'">&times;</button>
         </div>
     @endif
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -439,7 +431,6 @@
                     editForm.action = action;
                     editNrp.value = userId;
                     editUsername.value = userUsername;
-                    editIPK.value = userIPK;
                     editNama.value = userName;
                     editEmail.value = userEmail;
                     editProgramStudi.value = userProgramStudi;

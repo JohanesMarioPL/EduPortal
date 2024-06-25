@@ -4,6 +4,7 @@ use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProgramStudiController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +31,20 @@ Route::middleware(['CheckRoles'])->group(function () {
 
     // Admin - Program Studi
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    Route::get('/admin/program-studi', [ProgramStudiController::class, 'getProdi'])->name('admin.program-studi');
+    Route::post('/admin/program-studi', [ProgramStudiController::class, 'store'])->name('admin.program-studi.store');
+    Route::put('/admin/program-studi/{id}', [ProgramStudiController::class, 'update'])->name('admin.program-studi.update');
+    Route::delete('/admin/program-studi/{id}', [ProgramStudiController::class, 'destroy'])->name('admin.program-studi.destroy');
+=======
+>>>>>>> Stashed changes
     Route::get('/admin/program-studi', [ProgramStudiController::class, 'getProdi'])->name('admin-prodi');
     Route::post('/admin/program-studi', [ProgramStudiController::class, 'store'])->name('admin.prodi.store');
     Route::put('/admin/program-studi/{id}', [ProgramStudiController::class, 'update'])->name('admin.prodi.update');
     Route::delete('/admin/program-studi/{id}', [ProgramStudiController::class, 'destroy'])->name('admin.prodi.destroy');
+>>>>>>> b6d254c1496bb6668fab03c0f76b46de9858a988
 
     // Admin - Beasiswa
     Route::get('/admin/beasiswa', [BeasiswaController::class, 'getBeasiswa'])->name('admin-beasiswa');
@@ -74,6 +85,14 @@ Route::middleware(['CheckRoles'])->group(function () {
 Route::get('/user', [LoginController::class, 'indexUser'])->name('user.users.index');
 Route::get('/user/pengajuan', [PengajuanController::class, 'index'])->name('user.pengajuan');
 Route::post('/user/pengajuan', [PengajuanController::class, 'store'])->name('user.pengajuan.store');
+<<<<<<< Updated upstream
 Route::get('/pengajuan/{id}', [PengajuanController::class, 'show'])->name('user.pengajuan.show');
+=======
+<<<<<<< HEAD
+Route::get('/user/pengajuan/{id}', [PengajuanController::class, 'show'])->name('user.pengajuan.show');
+=======
+Route::get('/pengajuan/{id}', [PengajuanController::class, 'show'])->name('user.pengajuan.show');
+>>>>>>> b6d254c1496bb6668fab03c0f76b46de9858a988
+>>>>>>> Stashed changes
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

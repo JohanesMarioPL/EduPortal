@@ -16,14 +16,12 @@ class CheckRolesMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->isAdmin()) {
-            return $next($request);
-        } else if (Auth::check() && Auth::user()->isFakultas()) {
-            return $next($request);
-        } else if (Auth::check() && Auth::user()->isProdi()){
-            return $next($request);
-        } else {
-            return redirect()->back();
+        if (Auth::check()) {
+            if (Auth::user()->isAdmin() || Auth::user()->isFakultas() || Auth::user()->isProdi()) {
+                return $next($request);
+            }
         }
+
+        return redirect()->back();
     }
 }

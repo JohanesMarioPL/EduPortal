@@ -189,10 +189,10 @@
                     const pengajuanId = button.getAttribute('data-pengajuan-id');
                     const actionUrl = "{{ route('program-studi.pengajuan.approve', '') }}/" + pengajuanId;
 
-                    fetch(actionUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
+                        ch(actionUrl, {
+                        method: 'P
+                             headers: {
+                          'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         body: JSON.stringify({ status_pengajuan: 'disetujui_prodi' })
